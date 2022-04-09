@@ -1,21 +1,21 @@
 # NFS v4 Server Container
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/joebiellik/nfs4.svg)](https://hub.docker.com/r/joebiellik/nfs4/)
-[![Docker Stars](https://img.shields.io/docker/stars/joebiellik/nfs4.svg)](https://hub.docker.com/r/joebiellik/nfs4/)
-[![Docker Build](https://img.shields.io/docker/automated/joebiellik/nfs4.svg)](https://hub.docker.com/r/joebiellik/nfs4/)
-[![Docker Build Status](https://img.shields.io/docker/build/joebiellik/nfs4.svg)](https://hub.docker.com/r/joebiellik/nfs4/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/lihungte96/docker-nfs4.svg)](https://hub.docker.com/r/lihungte96/docker-nfs4/)
+[![Docker Stars](https://img.shields.io/docker/stars/lihungte96/docker-nfs4.svg)](https://hub.docker.com/r/lihungte96/docker-nfs4/)
+[![Docker Build](https://img.shields.io/docker/automated/lihungte96/docker-nfs4.svg)](https://hub.docker.com/r/lihungte96/docker-nfs4/)
+[![Docker Build Status](https://img.shields.io/docker/build/lihungte96/docker-nfs4.svg)](https://hub.docker.com/r/lihungte96/docker-nfs4/)
 
 [NFS v4](http://nfs.sourceforge.net/) server running under [s6 overlay](https://github.com/just-containers/s6-overlay) on [Alpine Linux](https://hub.docker.com/_/alpine/).
-
+Docker image for both amd64 and arm64
 ## Configuration
 
-See [example directory](https://github.com/jcbiellikltd/docker-nfs4/tree/master/example) for sample config file.
+See [example directory](https://github.com/lihungte96/docker-nfs4/tree/master/example) for sample config file.
 
 ## Quickstart
 
 ```yml
 nfs4:
-  image: joebiellik/nfs4
+  image: lihungte96/docker-nfs4
 
   # Required to load kernel NFS module
   privileged: true
