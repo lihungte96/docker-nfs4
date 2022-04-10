@@ -1,6 +1,6 @@
 FROM alpine:latest
 ARG S6_OVERLAY_VERSION=3.1.0.1
-ARG ARCH=amd64
+ARG ARCH=x86_64
 
 RUN apk add --no-cache nfs-utils
 
