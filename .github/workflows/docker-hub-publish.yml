@@ -40,16 +40,25 @@ jobs:
           push: true
           tags: ${{ env.IMAGE_NAME }}:amd64-latest
       -
-        name: Build and push arm64
+        name: Build and push arm32v7
+        uses: docker/build-push-action@v2
+        with:
+          file: Dockerfile.armhf
+          platforms: linux/arm
+          push: true
+          tags: ${{ env.IMAGE_NAME }}:arm32v7-latest
+      -
+        name: Build and push arm64v8
         uses: docker/build-push-action@v2
         with:
           file: Dockerfile.aarch64
           platforms: linux/arm64
           push: true
-          tags: ${{ env.IMAGE_NAME }}:arm64-latest
+          tags: ${{ env.IMAGE_NAME }}:arm64v8-latest
       - 
         name: Publish docker manifest
         run: |
-          docker manifest create ${{ env.IMAGE_NAME }}:latest ${{ env.IMAGE_NAME }}:amd64-latest ${{ env.IMAGE_NAME }}:arm64-latest
-          docker manifest annotate ${{ env.IMAGE_NAME }}:latest ${{ env.IMAGE_NAME }}:arm64-latest --os linux --arch arm64
+          docker manifest create ${{ env.IMAGE_NAME }}:latest ${{ env.IMAGE_NAME }}:amd64-latest ${{ env.IMAGE_NAME }}:arm32v7-latest ${{ env.IMAGE_NAME }}:arm64v8-latest
+          docker manifest annotate ${{ env.IMAGE_NAME }}:latest ${{ env.IMAGE_NAME }}:arm32v7-latest --os linux --arch arm
+          docker manifest annotate ${{ env.IMAGE_NAME }}:latest ${{ env.IMAGE_NAME }}:arm64v8-latest --os linux --arch arm64 --variant v8
           docker manifest push --purge ${{ env.IMAGE_NAME }}:latest
