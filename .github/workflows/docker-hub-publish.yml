@@ -1,4 +1,4 @@
-name: ci
+name: Docker Hub
 
 on:
   schedule:
@@ -11,7 +11,6 @@ on:
 env:
   # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository }}
-
 
 jobs:
   docker:
@@ -48,3 +47,9 @@ jobs:
           platforms: linux/arm64
           push: true
           tags: ${{ env.IMAGE_NAME }}:arm64-latest
+      - 
+        name: Publish docker manifest
+        run: |
+          docker manifest create ${{ env.IMAGE_NAME }}:latest ${{ env.IMAGE_NAME }}:amd64-latest ${{ env.IMAGE_NAME }}:arm64-latest
+          docker manifest annotate ${{ env.IMAGE_NAME }}:latest ${{ env.IMAGE_NAME }}:arm64-latest --os linux --arch arm64
+          docker manifest push --purge ${{ env.IMAGE_NAME }}:latest
