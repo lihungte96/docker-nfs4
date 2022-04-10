@@ -1,8 +1,8 @@
 # NFS v4 Server Container
 
+[![Docker Build](https://github.com/lihungte96/docker-nfs4/actions/workflows/docker-hub-publish.yml/badge.svg)](https://github.com/lihungte96/docker-nfs4/actions/workflows/docker-hub-publish.yml)
 [![Docker Pulls](https://img.shields.io/docker/pulls/lihungte96/docker-nfs4.svg)](https://hub.docker.com/r/lihungte96/docker-nfs4/)
 [![Docker Stars](https://img.shields.io/docker/stars/lihungte96/docker-nfs4.svg)](https://hub.docker.com/r/lihungte96/docker-nfs4/)
-[![Docker Hub](https://github.com/lihungte96/docker-nfs4/actions/workflows/docker-hub-publish.yml/badge.svg)](https://github.com/lihungte96/docker-nfs4/actions/workflows/docker-hub-publish.yml)
 [![Docker Build](https://img.shields.io/docker/automated/lihungte96/docker-nfs4.svg)](https://hub.docker.com/r/lihungte96/docker-nfs4/)
 
 This is a fork form: [Joe Bieillik nfs4 repo](https://github.com/jcbiellikltd/docker-nfs4)
@@ -41,7 +41,9 @@ nfs4:
     - "2049:2049/udp"
 ```
 
-### Mounting
+### Testing & Mounting
+
+For some reason, the NFS service can't be debugged by showmount command. To test the NFS service you have to mount it directly.
 
 ```shell
 mount -t nfs4 localhost:/ ./nfs

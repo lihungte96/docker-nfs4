@@ -1,4 +1,4 @@
-#!/usr/bin/execlineb -P
+#!/command/execlineb -P
 
 foreground { rpc.nfsd -N 2 -N 3 }
 
