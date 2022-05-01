@@ -1,1 +1,2 @@
 /mnt *(rw,fsid=0,root_squash,no_subtree_check,insecure)
+#/mnt/disk *(rw,nohide,no_subtree_check,insecure) # Another export entry for mounted directory

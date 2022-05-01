@@ -1,5 +1,5 @@
 nfs4:
-  image: joebiellik/nfs4
+  image: lihungte96/docker-nfs4
 
   # Required to load kernel NFS module
   privileged: true
@@ -12,6 +12,5 @@ nfs4:
     - /mnt:/mnt
 
   ports:
-    - "111:111/udp"
     - "2049:2049/tcp"
     - "2049:2049/udp"
