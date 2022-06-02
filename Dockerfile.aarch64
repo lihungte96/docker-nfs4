@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:3.15
 ARG S6_OVERLAY_VERSION=3.1.0.1
 ARG ARCH=aarch64
 
