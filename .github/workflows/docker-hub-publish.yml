@@ -32,33 +32,13 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
-        name: Build and push amd64
-        uses: docker/build-push-action@v2
+        name: Build and push Multi-Arch
+        uses: docker/build-push-action@v6
         with:
-          file: Dockerfile
-          platforms: linux/amd64
+          context: .
+          file: Dockerfile # Use a single multi-stage Dockerfile
+          platforms: linux/amd64,linux/arm/v7,linux/arm64
           push: true
-          tags: ${{ env.IMAGE_NAME }}:amd64-latest
-      -
-        name: Build and push arm32v7
-        uses: docker/build-push-action@v2
-        with:
-          file: Dockerfile.armhf
-          platforms: linux/arm
-          push: true
-          tags: ${{ env.IMAGE_NAME }}:arm32v7-latest
-      -
-        name: Build and push arm64v8
-        uses: docker/build-push-action@v2
-        with:
-          file: Dockerfile.aarch64
-          platforms: linux/arm64
-          push: true
-          tags: ${{ env.IMAGE_NAME }}:arm64v8-latest
-      - 
-        name: Publish docker manifest
-        run: |
-          docker manifest create ${{ env.IMAGE_NAME }}:latest ${{ env.IMAGE_NAME }}:amd64-latest ${{ env.IMAGE_NAME }}:arm32v7-latest ${{ env.IMAGE_NAME }}:arm64v8-latest
-          docker manifest annotate ${{ env.IMAGE_NAME }}:latest ${{ env.IMAGE_NAME }}:arm32v7-latest --os linux --arch arm
-          docker manifest annotate ${{ env.IMAGE_NAME }}:latest ${{ env.IMAGE_NAME }}:arm64v8-latest --os linux --arch arm64 --variant v8
-          docker manifest push --purge ${{ env.IMAGE_NAME }}:latest
+          tags: |
+            ${{ env.IMAGE_NAME }}:latest
+            ${{ env.IMAGE_NAME }}:${{ github.sha }}
