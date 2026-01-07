@@ -1,16 +1,17 @@
-nfs4:
-  image: lihungte96/docker-nfs4
+services:
+  nfs4:
+    image: lihungte96/docker-nfs4
 
-  # Required to load kernel NFS module
-  privileged: true
+    # Required to load kernel NFS module
+    privileged: true
 
-  volumes:
-    # You must provide an exports config file
-    - ./exports:/etc/exports
+    volumes:
+      # You must provide an exports config file
+      - ./exports:/etc/exports
 
-    # Shares
-    - /mnt:/mnt
+      # Shares
+      - /mnt:/mnt
 
-  ports:
-    - "2049:2049/tcp"
-    - "2049:2049/udp"
+    ports:
+      - "2049:2049/tcp"
+      - "2049:2049/udp"

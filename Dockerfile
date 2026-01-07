@@ -1,5 +1,5 @@
-FROM alpine:3.15
-ARG S6_OVERLAY_VERSION=3.1.0.1
+FROM alpine:3.23
+ARG S6_OVERLAY_VERSION=3.2.1.0
 ARG ARCH=x86_64
 
 RUN apk add --no-cache nfs-utils
