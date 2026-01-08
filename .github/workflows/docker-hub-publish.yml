@@ -41,8 +41,9 @@ jobs:
       -
         name: Create Multi-Arch Manifest
         run: |
-          docker manifest create ${{ env.IMAGE_NAME }}:latest \
+          docker buildx imagetools create \
+            -t ${{ env.IMAGE_NAME }}:latest \
+            -t ${{ env.IMAGE_NAME }}:${{ github.sha }} \
             ${{ env.IMAGE_NAME }}:amd64-latest \
             ${{ env.IMAGE_NAME }}:arm32v7-latest \
-            ${{ env.IMAGE_NAME }}:arm64v8-latest && \
-          docker manifest push --purge ${{ env.IMAGE_NAME }}:latest
+            ${{ env.IMAGE_NAME }}:arm64v8-latest
